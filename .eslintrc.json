@@ -24,7 +24,6 @@
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
     "import/no-anonymous-default-export": "off",
-    "no-console": 0,
     "sort-imports": "error"
   },
   "settings": {
