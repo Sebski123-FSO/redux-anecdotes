@@ -9,6 +9,16 @@ const AnecdoteList = () => {
 
   const handleVote = (id) => {
     dispatch(vote(id));
+    dispatch({
+      type: "notification/createNotification",
+      payload: `you voted for '${
+        anecdotes.find((anecdote) => anecdote.id === id).content
+      }'`,
+    });
+    setTimeout(
+      () => dispatch({ type: "notification/removeNotification" }),
+      5000
+    );
   };
 
   const sortedAnecdotes = [...anecdotes].sort((a, b) => b.votes - a.votes);

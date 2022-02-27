@@ -9,6 +9,14 @@ const AnecdoteForm = () => {
     event.preventDefault();
     const content = event.target.content.value;
     dispatch(createAnecdote(content));
+    dispatch({
+      type: "notification/createNotification",
+      payload: `created new anecdote: '${content}'`,
+    });
+    setTimeout(
+      () => dispatch({ type: "notification/removeNotification" }),
+      5000
+    );
   };
 
   return (

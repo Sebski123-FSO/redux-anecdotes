@@ -6,8 +6,8 @@ import React from "react";
 const App = () => {
   return (
     <div>
-      <Notification />
       <h2>Anecdotes</h2>
+      <Notification />
       <AnecdoteList />
       <h2>create new</h2>
       <AnecdoteForm />
