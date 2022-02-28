@@ -23,8 +23,7 @@
     "linebreak-style": ["error", "windows"],
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
-    "import/no-anonymous-default-export": "off",
-    "sort-imports": "error"
+    "import/no-anonymous-default-export": "off"
   },
   "settings": {
     "react": {
