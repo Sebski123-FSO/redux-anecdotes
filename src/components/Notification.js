@@ -1,9 +1,8 @@
+import PropTypes from "prop-types";
 import React from "react";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 
-const Notification = () => {
-  const notification = useSelector((state) => state.notification);
-
+const Notification = ({ notification }) => {
   const style = {
     display: notification.visible ? "" : "none",
     border: "solid",
@@ -13,4 +12,10 @@ const Notification = () => {
   return <div style={style}>{notification.content}</div>;
 };
 
-export default Notification;
+Notification.propTypes = {
+  notification: PropTypes.object.isRequired,
+};
+
+export default connect((state) => {
+  return { notification: state.notification };
+})(Notification);
