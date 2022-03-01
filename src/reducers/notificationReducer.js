@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   content: "Notification Test",
   visible: false,
+  currentNotifId: 0,
 };
 
 const notificationSlice = createSlice({
@@ -10,12 +11,15 @@ const notificationSlice = createSlice({
   initialState: initialState,
   reducers: {
     createNotification(state, action) {
-      state.content = action.payload;
+      state.content = action.payload.content;
+      state.currentNotifId = action.payload.id;
       state.visible = true;
     },
-    removeNotification(state) {
-      state.content = "You should not see this";
-      state.visible = false;
+    removeNotification(state, action) {
+      if (state.currentNotifId === action.payload) {
+        state.content = "You should not see this";
+        state.visible = false;
+      }
     },
   },
 });
@@ -25,8 +29,11 @@ export const { createNotification, removeNotification } =
 
 export const setNotification = (content, timeOut) => {
   return (dispatch) => {
-    dispatch(createNotification(content));
-    setTimeout(() => dispatch(removeNotification()), timeOut * 1000);
+    const id = setTimeout(
+      () => dispatch(removeNotification(id)),
+      timeOut * 1000
+    );
+    dispatch(createNotification({ content, id }));
   };
 };
 
